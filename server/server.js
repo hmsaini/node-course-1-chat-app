@@ -5,7 +5,7 @@ const socketIO=require('socket.io');
 
 
 const publicPath=path.join(__dirname,'../public');
-const port =process.env.PORT || 3000;
+const port =process.env.PORT || 3000;  //for heroku
 
 var app=express();
 var server=http.createServer(app);
@@ -16,14 +16,19 @@ app.use(express.static(publicPath));
 io.on('connection',(socket)=>{
 console.log('New user connected');
 
-socket.emit('newMessage',{
-from:'abc',
-text:'See you then',
-createdAt:123123
-});
+// socket.emit('newMessage',{          // 2nd argu object
+// from:'abc',
+// text:'See you then',
+// createdAt:123123
+// });
 
 socket.on('createMessage',(message)=>{
 console.log('createMessage',message);
+io.emit('newMessage',{
+from:message.from,
+text:message.text,
+createdAt:new Date().getTime()
+});
 });
 
 socket.on('disconnect',()=>{
