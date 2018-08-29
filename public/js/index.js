@@ -2,7 +2,7 @@
 var socket = io.connect('http://localhost:3000');
 
 socket.on('connect',function (){
-console.log('Connected to server'); //prints on developer option
+console.log('Connected to server');          //prints on developer option
 
 // socket.emit('createMessage',{
 //     from:'Harpreet',
@@ -11,9 +11,9 @@ console.log('Connected to server'); //prints on developer option
 });
 
 socket.on('disconnect',function (){
-console.log('Disconnected from server');//prints on developer option
+console.log('Disconnected from server');       //prints on developer option----on refresh
 });
 
-socket.on('newMessage',function (message){
+socket.on('newMessage',function (message){    //
 console.log('newMeassgae',message);
 });
